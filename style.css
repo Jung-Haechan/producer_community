@@ -108,6 +108,25 @@ body {
           padding: 10px;
           width: 426px;
         }
+    article .login_page, article .register_page {
+        display: flex;
+        width: 426px;
+        height: 300px;
+        flex-grow: 1;
+        text-align: center;
+        padding: 60px;
+      }
+      .login_page .label, .register_page .label {
+         margin-right: 10px;
+      }
+      .login_page .enter {
+         margin: 10px;
+      }
+      .register_page .enter {
+         margin: 20px;
+         margin-left: 10px;
+      }
+
 
 
     aside {
