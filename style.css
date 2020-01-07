@@ -45,6 +45,15 @@ body {
          margin: 20px;
          margin-top: 20px;
        }
+       .main_nav li .nav_detail {
+         position: absolute;
+         left: 420px;
+         top: 50px;
+         background: rgba(60, 60, 60, 1);
+         padding: 30px;
+         width: 500px;
+         color: powderblue;
+       }
      nav a {
        text-decoration: none;
        color: white;

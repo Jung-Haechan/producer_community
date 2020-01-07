@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css?ver=1">
     <title> Playwithsong </title>
+    <script src="jquery.js"></script>
   </head>
 
   <body>
@@ -79,6 +80,8 @@
         커뮤니티 주소
       </footer>
     </div>
+
+    <script src="script.js"></script>
 
   </body>
 </html>
