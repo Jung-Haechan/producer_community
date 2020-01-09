@@ -1,3 +1,7 @@
+<?php
+  include 'db_connect.php';
+  session_start();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -6,6 +10,7 @@
     <meta charset="ucf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css?ver=1">
+    <link rel="icon" href="images/icon.ico">
     <title> Playwithsong </title>
     <script src="jquery.js"></script>
   </head>
@@ -27,6 +32,23 @@
           </ul>
         </nav>
 
+<?php
+  if($_SESSION['islogin']==1) {
+    $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $user_name = $row['name'];
+
+    echo'
+        <div class="login_register">
+          <div id="name">'
+          .$user_name.
+          '님</div>
+          <form action="logout_process.php" method="post" id="logout_init">
+            <input type="submit" name="logout_init" value="로그아웃">
+          </form>
+        </div>';
+  } else { echo'
         <div class="login_register">
           <form action="login.php" method="post" id="login_init">
             <input type="submit" name="login_init" value="로그인">
@@ -34,7 +56,11 @@
           <form action="register.php" method="post" id="register_init">
             <input type="submit" name="register_init" value="회원가입">
           </form>
-        </div>
+        </div>' ;
+        $_SESSION['islogin'] = 0;
+  }
+?>
+
 
       </header>
 

@@ -1,7 +1,7 @@
 var nav = function(i, text) {
   $('nav ul li:eq('+i+')').hover ( function(){
     $(this).append('<div class="nav_detail">'+text+'</div>');
-    $(this).find('a').css('color', 'powderblue');
+    $(this).find('a').css('color', 'pink');
   }, function(){
     $('.nav_detail').fadeOut(300, function(){
       $(this).children('div').remove();

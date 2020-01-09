@@ -1,3 +1,7 @@
+<?php
+  include 'db_connect.php';
+  session_start();
+ ?>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +12,11 @@
     <link rel="stylesheet" type="text/css" href="style.css?ver=1">
     <title> Playwithsong </title>
     <script src="jquery.js"></script>
+    <?php
+      if($_SESSION['islogin']===-1){
+        echo '<script>alert("로그인에 실패했습니다.");</script>';
+      }
+    ?>
   </head>
 
   <body>
