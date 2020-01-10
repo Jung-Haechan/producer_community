@@ -52,14 +52,10 @@
                         <form action='delete_process.php?post_num=".$row['num']."' method='post'>
                            <input type='submit' value='삭제'>
                          </form>
-                         <form action='update_process.php' method='post'>
+                         <form action='edit.php?post_num=".$row['num']."' method='post'>
                            <input type='submit' value='수정'>
                          </form>
                        </div>";
-                    }
-                    else {
-                      echo "
-                      </div>";
                     }
                     $sql = "SELECT * FROM posts WHERE board='composer_board'&&num>".$_GET['post_num']." LIMIT 1";
                     $result = mysqli_query($conn, $sql);

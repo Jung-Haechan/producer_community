@@ -1,7 +1,8 @@
 <?php
   include 'db_connect.php';
   session_start();
-  $sql = "INSERT INTO posts (title, contents, author, board, created) VALUE ('{$_POST['title']}', '{$_POST['contents']}', '{$_SESSION['user_name']}', '{$_POST['board']}', NOW())";
+  $sql = "UPDATE posts SET title='{$_POST['title']}', contents='{$_POST['contents']}', created=NOW() WHERE num=".$_GET['post_num'];
+  echo $sql;
   $result = mysqli_query($conn, $sql);
   if($result){
     header('Location:composer_board.php');

@@ -26,7 +26,7 @@
                   </select>
               </div>
               <div class="content">
-                <label for="content">본문</label> <textarea name="content" id="content" rows="20" cols="80"></textarea>
+                <label for="content">본문</label> <textarea name="contents" id="content" rows="20" cols="80"></textarea>
               </div>
               <div class="file">
                 <label for="file">파일</label> <input type="file" name="file" id="file">
