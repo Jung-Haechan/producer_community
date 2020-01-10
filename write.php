@@ -15,7 +15,7 @@
           <div class="write">
             <form action="write_process.php" method="post">
               <div class="title">
-                <label for="title">제목</label> <input type="text" name="title" id="title" style="width:400px">
+                <label for="title">제목</label> <input type="text" name="title" id="title" style="width:400px" required>
                 <label for="board">게시판</label>
                   <select id="board" name="board">
                     <option value="composer_board">작곡</option>

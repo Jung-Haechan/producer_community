@@ -38,12 +38,12 @@
     $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-    $user_name = $row['name'];
+    $_SESSION['user_name'] = $row['name'];
 
     echo'
         <div class="login_register">
           <div id="name">'
-          .$user_name.
+          .$_SESSION['user_name'].
           '님</div>
           <form action="logout_process.php" method="post" id="logout_init">
             <input type="submit" name="logout_init" value="로그아웃">

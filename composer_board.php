@@ -14,7 +14,7 @@
             <h2><a href="composer_board.php"> 작곡 게시판 </a></h2>
 
                 <?php
-                  $sql = "SELECT * FROM posts WHERE board='composer_board'";
+                  $sql = "SELECT * FROM posts WHERE board='composer_board' ORDER BY num DESC";
                   $result = mysqli_query($conn, $sql);
                   if (!isset($_GET['post_num'])) {
                     echo file_get_contents('board_table.txt');
@@ -45,8 +45,38 @@
                         </div>
                         <div class='content'>"
                           .$row['contents'].
-                        "</div>
+                        "</div>";
+                    if(isset($_SESSION['user_name'])&&$row['author']===$_SESSION['user_name']){
+                      echo "
+                      <div class='buttons'>
+                        <form action='delete_process.php?post_num=".$row['num']."' method='post'>
+                           <input type='submit' value='삭제'>
+                         </form>
+                         <form action='update_process.php' method='post'>
+                           <input type='submit' value='수정'>
+                         </form>
+                       </div>";
+                    }
+                    else {
+                      echo "
                       </div>";
+                    }
+                    $sql = "SELECT * FROM posts WHERE board='composer_board'&&num>".$_GET['post_num']." LIMIT 1";
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_assoc($result);
+                    echo "
+                        <div class='neighbor'>다음글:
+                          <a href='composer_board.php?post_num=".$row['num']."'>"
+                          .$row['title'].
+                        "</a></div>";
+                    $sql = "SELECT * FROM posts WHERE board='composer_board'&&num<".$_GET['post_num']." ORDER BY num DESC LIMIT 1";
+                    $result = mysqli_query($conn, $sql);
+                    $row = mysqli_fetch_assoc($result);
+                    echo "
+                        <div class='neighbor'>이전글:
+                          <a href='composer_board.php?post_num=".$row['num']."'>"
+                          .$row['title'].
+                        "</a></div>";
                   }
                 ?>
 
