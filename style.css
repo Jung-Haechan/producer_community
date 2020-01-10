@@ -47,11 +47,11 @@ body {
        }
        .main_nav li .nav_detail {
          position: absolute;
-         left: 420px;
+         left: 390px;
          top: 50px;
          background: rgba(60, 60, 60, 1);
          padding: 30px;
-         width: 500px;
+         width: 600px;
          color: pink;
        }
      nav a {
@@ -129,8 +129,77 @@ body {
          margin: 20px;
          margin-left: 10px;
       }
+    article .board {
+        flex-grow: 1;
+        flex-shrink: 0 !important;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      article .board table {
+          background: white;
+          width: 600px;
+          border-top: 1px solid #444444;
+          border-collapse: collapse;
+          margin-top: 10px;
+          font-size: 14px;
+        }
+        .board table thead{
+          font-weight: bold;
+          background: rgb(60,60,60);
+          color:white;
+        }
+        .board table td {
+          border-bottom: 1px solid black;
+        }
+        .board table td:nth-child(2) {
+          width: 300px;
+        }
+      article .board h2 {
+         display: inline;
+        }
+        article .board h2 a {
+          text-decoration: none;
+          color: black;
+        }
+      article .board form {
+        display: inline;
+        margin-left: 49px;
+      }
+      article .board .post {
+          background: white;
+          width: 600px;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+        .post .head {
+            display: flex;
+            border-bottom: 1px solid gray;
+          }
+          .post .head .title {
+            flex-grow: 1;
+            width: 500px;
+            font-weight: bold;
+            padding: 10px;
+          }
+          .post .head .author {
+            padding: 10px;
+          }
+        .post .content {
+          height: 500px;
+          padding: 10px;
+        }
 
-
+    article .write {
+        margin: 30px;
+      }
+      article .write form>*{
+        margin:10px;
+      }
+      article .write #submit {
+        position:relative;
+        left:547px;
+        bottom: 50px;
+      }
 
     aside {
         flex-grow: 1;
@@ -139,11 +208,11 @@ body {
         width: 100px;
       }
 
-  footer {
+ footer {
   height: 100px;
   background: powderblue;
   background: rgb(60, 60, 60);
   color: rgb(240, 240, 240);
   padding: 30px;
   text-align: center;
-}
+ }

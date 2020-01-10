@@ -52,9 +52,9 @@
               <label for="new_name">Name:</label>
             </div>
               <div class="blank">
-                <input type="text" name="new_ID" required><br>
-                <input type="password" name="new_password" required><br>
-                <input type="text" name="new_name" required>
+                <input type="text" name="new_ID" id="new_ID" required><br>
+                <input type="password" name="new_password" id="new_password" required><br>
+                <input type="text" name="new_name" id="new_name" required>
               </div>
               <div class="enter">
                 <input type="submit" name="register" value="회원가입" style="height:30px">

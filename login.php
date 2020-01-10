@@ -12,11 +12,6 @@
     <link rel="stylesheet" type="text/css" href="style.css?ver=1">
     <title> Playwithsong </title>
     <script src="jquery.js"></script>
-    <?php
-      if($_SESSION['islogin']===-1){
-        echo '<script>alert("로그인에 실패했습니다.");</script>';
-      }
-    ?>
   </head>
 
   <body>
@@ -60,8 +55,8 @@
               <label for="password">Password:</label>
             </div>
               <div class="blank">
-                <input type="text" name="ID" required><br>
-                <input type="password" name="password" required>
+                <input type="text" name="ID" id ="ID" required><br>
+                <input type="password" name="password" id="password" required>
               </div>
               <div class="enter">
                 <input type="submit" name="logIn" value="로그인" style="height:30px">

@@ -12,7 +12,6 @@
     $_SESSION['user_ID'] = $_POST['ID'];
     header ("Location:index.php");
   } else {
-    header("Location:login.php");
-    $_SESSION['islogin'] = -1;
+    echo "<script>alert('로그인에 실패했습니다.'); history.go(-1);</script>";
   }
  ?>

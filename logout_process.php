@@ -3,6 +3,6 @@
 
   session_start();
 
-  $_SESSION['islogin'] = 0;
+  $_SESSION['islogin'] = NULL;
   $_SESSION['user_ID'] = NULL;
   header ("Location:index.php");
