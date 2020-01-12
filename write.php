@@ -13,7 +13,7 @@
         <article>
 
           <div class="write">
-            <form action="write_process.php" method="post">
+            <form enctype="multipart/form-data" action="write_process.php" method="post">
               <div class="title">
                 <label for="title">제목</label> <input type="text" name="title" id="title" style="width:400px" required>
                 <label for="board">게시판</label>

@@ -2,6 +2,7 @@
   box-sizing: border-box;
   flex-shrink: 0;
   border-color: rgb(180, 180, 180) !important;
+  word-break: break-all;
 }
 body {
   margin:0px;
@@ -134,7 +135,7 @@ body {
         flex-grow: 1;
         flex-shrink: 0 !important;
         margin-top: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         min-height: 600px;
       }
       article .board table {
@@ -153,9 +154,11 @@ body {
         .board table td {
             border-bottom: 1px solid black;
             padding-right: 10px;
+            word-break: break-all;
           }
           .board table td:nth-child(2) {
             width: 400px;
+            max-width: 400px;
           }
           .board table td a {
             text-decoration: none;
@@ -178,22 +181,26 @@ body {
           border-radius: 5px;
           margin-top: 20px;
         }
-        .post .head {
+        .post .title {
+          font-weight: bold;
+          padding: 10px;
+          border-bottom: 1px solid gray;
+        }
+        .post .info {
             display: flex;
             border-bottom: 1px solid gray;
+            font-size: 12px;
           }
-          .post .head .title {
+          .post .info .author, .post .info .time, .post .info .views {
             flex-grow: 1;
-            width: 500px;
-            font-weight: bold;
             padding: 10px;
           }
-          .post .head .author {
-            padding: 10px;
-          }
-        .post .content {
-          min-height: 400px;
+        .post >.content {
+          min-height: 300px;
           padding: 10px;
+        }
+        .post audio {
+          margin: 40px;
         }
         .post .buttons {
             vertical-align: bottom;
@@ -212,6 +219,22 @@ body {
             text-decoration: none;
             color: black;
             font-weight: bold;
+          }
+        .post >form {
+          padding: 22px;
+          border-top: 1px solid gray;
+          padding-top: 50px;
+        }
+        .post .reply {
+            padding: 10px;
+            border-top: 1px solid gray;
+          }
+          .post .reply .created {
+            font-size: 12px;
+            text-align: right;
+          }
+          .post .reply .author {
+            font-size: 13px;
           }
 
     article .write {

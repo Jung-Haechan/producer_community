@@ -2,7 +2,7 @@
   include 'db_connect.php';
   session_start();
 
-  $sql = "DELETE FROM posts WHERE num=".$_GET['post_num'];
+  $sql = "DELETE FROM posts WHERE num=".$_POST['post_num'];
   $result = mysqli_query($conn, $sql);
   if($result){
     header("Location:composer_board.php");
