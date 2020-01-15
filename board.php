@@ -1,5 +1,6 @@
 <?php
   include 'headline.php';
+
  ?>
 
 
@@ -12,31 +13,53 @@
 
           <div class="board">
             <?php
-                  $present_board = $_GET['board'];
+                //post_num이 NULL일 때, 게시판 테이블 출략하기
+                $present_board = $_GET['board'];
+                  if(!isset($_GET['page'])) {
+                    $page = 1;
+                  } else {
+                    $page = $_GET['page'];
+                  }
                   echo '<h2><a href="board.php?board='.$present_board.'">'.$board["$present_board"].' 게시판 </a></h2>';
-                  $sql = "SELECT * FROM posts WHERE board='".$present_board."' ORDER BY num DESC";
+                  $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC";
                   $result = mysqli_query($conn, $sql);
+                  $list_num = mysqli_num_rows($result);
+
+                  $list_per_p = 20;
+                  $page_per_b = 5;
+                  $total_page_num = ceil($list_num/$list_per_p);
+                  $total_block_num = ceil($total_page_num/$page_per_b);
+                  $present_block = ceil($page/$page_per_b);
+                  $page_first = ($present_block-1)*$page_per_b + 1;
+                  if($present_block===$total_block_num){
+                    $page_last = $total_page_num;
+                  } else {
+                    $page_last = $present_block * $page_per_b;
+                  }
                   if (!isset($_GET['post_num'])) {
-                    echo '
-                    <form action="index.html" method="get">
-                      <select name="arrange">
-                        <option value="">제목</option>
-                        <option value="">제목+내용</option>
-                        <option value="">작성자</option>
+                    echo "
+                    <form action='index.html' method='get'>
+                      <select name='arrange'>
+                        <option value=''>제목</option>
+                        <option value=''>제목+내용</option>
+                        <option value=''>작성자</option>
                       </select>
-                      <input type="text" name="search">
-                      <input type="submit" value="검색">
+                      <input type='text' name='search'>
+                      <input type='submit' value='검색'>
                     </form>
-                    <form action="write.php" method="post">
-                      <input type="hidden" name="board" value='.$present_board.'>
-                      <input type="submit" value="글쓰기">
+                    <form action='write.php' method='post'>
+                      <input type='hidden' name='board' value='$present_board'>
+                      <input type='submit' value='글쓰기'>
                     </form>
                     <table>
                       <thead>
                         <tr>
                           <td>번호</td><td>제목</td><td>글쓴이</td><td>날짜</td>
                         </tr>
-                      </thead><tbody>';       ;
+                      </thead><tbody>";
+                    $list_first = ($page-1)*$list_per_p;
+                    $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    $result = mysqli_query($conn, $sql);
                     while ($row_list = mysqli_fetch_assoc($result)){
                       echo "
                       <tr>
@@ -46,8 +69,27 @@
                         <td>".explode(' ',$row_list['created'])[0]."</td>
                       </tr>";
                     }
-                    echo "</tbody></table>";    //post_num이 비어있을 때, 게시판 테이블 출력
-                  } else {
+                    echo "</tbody></table>
+                         <div class='page'>";
+
+                //post_num이 NULL일 때, page 넘버링
+                  if($present_block!=1){
+                    echo "<a href='board.php?board=$present_board&&page=".($page_first-1)."'><</a>";
+                  }
+                  for($i=$page_first; $i<=$page_last; $i++) {
+                    echo "<a href='board.php?board=$present_board&&page=$i'>[$i]</a>";
+                  }
+                  if($present_block!=$total_block_num){
+                    echo "<a href='board.php?board=$present_board&&page=".($page_last+1)."'>></a>";
+                  }
+
+
+
+
+                }
+
+
+                else {
                     $sql = "SELECT * FROM posts WHERE num=".$_GET['post_num'];
                     $result = mysqli_query($conn, $sql);
                     $row_post = mysqli_fetch_assoc($result);
@@ -141,9 +183,6 @@
                           "</div>";
                   }
             ?>
-            <div class='page'>
-              [1] [2] [3] [4] [5]
-            </div>
 
           </div>
 

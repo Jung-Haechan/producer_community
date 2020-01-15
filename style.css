@@ -151,11 +151,14 @@ body {
           font-weight: bold;
           background: rgb(60,60,60);
           color:white;
+          padding: 5px;
+        }
+        .board table tr:nth-child(2n) {
+          background: rgb(220,220,220);
         }
         .board table td {
-            border-bottom: 1px solid black;
-            padding-right: 10px;
             word-break: break-all;
+            padding: 5px;
           }
           .board table td:nth-child(2) {
             width: 400px;
@@ -185,12 +188,11 @@ body {
         .post .title {
           font-weight: bold;
           padding: 10px;
-          border-bottom: 1px solid gray;
         }
         .post .info {
             display: flex;
-            border-bottom: 1px solid gray;
             font-size: 12px;
+            background: rgb(240,240,240);
           }
           .post .info .author, .post .info .time, .post .info .views {
             flex-grow: 1;
@@ -214,7 +216,7 @@ body {
           }
         .post .neighbor {
             padding: 10px;
-            border-top: 1px solid gray;
+            background: rgb(240,240,240);
           }
           .post .neighbor a {
             text-decoration: none;
@@ -223,13 +225,17 @@ body {
           }
         .post >form {
           padding: 22px;
-          border-top: 1px solid gray;
           padding-top: 50px;
         }
-        .post .reply {
+        .post .reply:nth-child(2n) {
             padding: 10px;
-            border-top: 1px solid gray;
+            background-color: white;
           }
+        .post .reply:nth-child(2n-1) {
+            padding: 10px;
+            background-color: rgb(240,240,240);
+          }
+
           .post .reply .created {
             font-size: 12px;
             text-align: right;
@@ -239,8 +245,14 @@ body {
             padding-bottom: 5px;
           }
       article .board .page {
-        text-align: center;
-      }
+          text-align: center;
+          padding: 20px;
+        }
+        .page a {
+          text-decoration: none;
+          color: black;
+          padding: 5px;
+        }
     article .write {
         margin: 30px;
       }
