@@ -40,6 +40,7 @@
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     $_SESSION['user_name'] = $row['name'];
+    $you = $_SESSION['user_name'];
 
     echo'
         <div class="login_register">
