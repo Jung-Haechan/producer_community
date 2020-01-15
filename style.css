@@ -54,6 +54,7 @@ body {
          padding: 30px;
          width: 600px;
          color: pink;
+
        }
      nav a {
        text-decoration: none;
@@ -135,7 +136,7 @@ body {
         flex-grow: 1;
         flex-shrink: 0 !important;
         margin-top: 20px;
-        margin-bottom: 40px;
+        margin-bottom: 60px;
         min-height: 600px;
       }
       article .board table {
@@ -173,7 +174,7 @@ body {
         }
       article .board >form {
         display: inline;
-        margin-left: 49px;
+        margin-left: 20px;
       }
       article .board .post {
           background: white;
@@ -234,9 +235,12 @@ body {
             text-align: right;
           }
           .post .reply .author {
-            font-size: 13px;
+            font-size: 12px;
+            padding-bottom: 5px;
           }
-
+      article .board .page {
+        text-align: center;
+      }
     article .write {
         margin: 30px;
       }

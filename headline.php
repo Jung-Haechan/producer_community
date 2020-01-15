@@ -1,6 +1,7 @@
 <?php
   include 'db_connect.php';
   session_start();
+  include 'php_object.php';
 ?>
 
 <!DOCTYPE html>
@@ -25,11 +26,11 @@
 
         <nav>
           <ul class="main_nav">
-            <li><a href="composer_board.php">작곡게시판</a></li>
-            <li><a href="lyricist_board.php">작사게시판</a></li>
-            <li><a href="performer_board.php">보컬/악기게시판</a></li>
-            <li><a href="free_board.php">자유게시판</a></li>
-            <li><a href="completed_board.php">완성작</a></li>
+            <li><a href="board.php?board=composer_board">작곡게시판</a></li>
+            <li><a href="board.php?board=lyricist_board">작사게시판</a></li>
+            <li><a href="board.php?board=performer_board">보컬/악기게시판</a></li>
+            <li><a href="board.php?board=free_board">자유게시판</a></li>
+            <li><a href="board.php?board=completed_board">완성작</a></li>
           </ul>
         </nav>
 

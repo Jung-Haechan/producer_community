@@ -18,11 +18,11 @@
                 <label for="title">제목</label> <input type="text" name="title" id="title" style="width:400px" required>
                 <label for="board">게시판</label>
                   <select id="board" name="board">
-                    <option value="composer_board">작곡</option>
-                    <option value="lyricist_board">작사</option>
-                    <option value="performer_board">보컬/악기</option>
-                    <option value="free_board">자유</option>
-                    <option value="completed_board">완성작</option>
+                    <option value="composer_board" <?php if($_POST['board']==='composer_board'){echo 'selected';}?>>작곡</option>
+                    <option value="lyricist_board" <?php if($_POST['board']==='lyricist_board'){echo 'selected';}?>>작사</option>
+                    <option value="performer_board" <?php if($_POST['board']==='performer_board'){echo 'selected';}?>>보컬/악기</option>
+                    <option value="free_board" <?php if($_POST['board']==='free_board'){echo 'selected';}?>>자유</option>
+                    <option value="completed_board" <?php if($_POST['board']==='completed_board'){echo 'selected';}?>>완성작</option>
                   </select>
               </div>
               <div class="content">

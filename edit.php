@@ -23,6 +23,7 @@
               <div class="file">
                 <label for="file">파일</label> <input type="file" name="file" id="file">
               </div>
+              <input type="hidden" name="board" value="<?=$row['board']?>">
               <input type="submit" value="수정" id="submit">
             </form>
           </div>
