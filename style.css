@@ -157,7 +157,9 @@ body {
           background: rgb(220,220,220);
         }
         .board table td {
-            word-break: break-all;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             padding: 5px;
           }
           .board table td:nth-child(2) {
@@ -270,6 +272,94 @@ body {
         left:547px;
         bottom: 50px;
       }
+    article .mailbox {
+        flex-grow: 1;
+        flex-shrink: 0 !important;
+        margin-top: 20px;
+        margin-bottom: 60px;
+        min-height: 400px;
+      }
+      article .mailbox table {
+          background: white;
+          width: 650px;
+          border-top: 1px solid #444444;
+          border-collapse: collapse;
+          margin-top: 30px;
+          font-size: 14px;
+        }
+        .mailbox table thead{
+          font-weight: bold;
+          background: rgb(60,60,60);
+          color:white;
+          padding: 5px;
+        }
+        .mailbox table tr:nth-child(2n) {
+          background: rgb(220,220,220);
+        }
+        .mailbox table td {
+            word-break: break-all;
+            padding: 5px;
+          }
+          .mailbox table td:nth-child(2) {
+            width: 400px;
+            max-width: 400px;
+          }
+          .mailbox table td a {
+            text-decoration: none;
+            color: black;
+          }
+      article .mailbox >form {
+        display: inline;
+        margin-left: 30px;
+      }
+      article .mailbox h2 {
+         display: inline;
+        }
+        article .mailbox h2 a {
+          text-decoration: none;
+          color: black;
+        }
+      article .mailbox .mail {
+        background: white;
+        border-radius: 5px;
+        margin-top: 20px;
+        width: 300px;
+        min-height: 300px;
+        padding: 10px;
+        }
+        .mail .info {
+            display: flex;
+            font-size: 12px;
+            background: rgb(240,240,240);
+          }
+          .mail .info .sender, .mail .info .time {
+            flex-grow: 1;
+            padding: 10px;
+          }
+        .mail >.content {
+          min-height: 300px;
+          padding: 10px;
+        }
+        .mail form {
+            vertical-align: bottom;
+            display: inline;
+          }
+      article .mailbox .page {
+          text-align: center;
+          padding: 20px;
+        }
+        .page a {
+          text-decoration: none;
+          color: black;
+          padding: 5px;
+        }
+    article .write_mail {
+        margin: 30px;
+      }
+      article .write_mail form>*{
+        margin:10px;
+      }
+
 
     aside {
         flex-grow: 1;

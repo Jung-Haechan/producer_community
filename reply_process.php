@@ -7,7 +7,8 @@
       $sql = "INSERT INTO reply (post_num, author, contents, created) VALUE ('{$_POST['post_num']}', '{$_SESSION['user_name']}', '{$_POST['reply']}', NOW())";
       $result = mysqli_query($conn, $sql);
       if($result){
-         header('Location:board.php?board='.$_POST['board'].'&&post_num='.$_POST['post_num']);
+        $prev_page = $_SERVER['HTTP_REFERER'];
+        header('Location:'.$prev_page);
        }
        else {
          echo '<h2>오류 발생<h2>';

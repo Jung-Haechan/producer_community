@@ -7,11 +7,11 @@
   $result = mysqli_query($conn, $sql);
   $is_member = mysqli_num_rows($result);
 
-  if($is_member===1) {
+  if($is_member>=1) {
     $_SESSION['islogin'] = 1;
     $_SESSION['user_ID'] = $_POST['ID'];
-    header ("Location:index.php");
+    echo "<script>history.go(-2);</script>";
   } else {
-    echo "<script>alert('로그인에 실패했습니다.'); history.go(-1);</script>";
+    echo "<script>alert('로그인에 실패했습니다.'); location.href='login.php';</script>";
   }
  ?>

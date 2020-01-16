@@ -6,4 +6,6 @@
   $_SESSION['islogin'] = NULL;
   $_SESSION['user_ID'] = NULL;
   $_SESSION['user_name'] = NULL;
-  header ("Location:index.php");
+  $prev_page = $_SERVER['HTTP_REFERER'];
+  header('Location:'.$prev_page);
+?>
