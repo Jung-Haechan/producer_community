@@ -15,7 +15,8 @@
           <div class="write_mail">
             <form action="write_mail_process.php" method="post">
               <div class="reciever">
-                <label for="reciever">받는사람</label> <input type="text" name="title" id="reciever" value="이름을 입력하세요" required>
+                <label for="reciever">받는사람</label> <input type="text" name="reciever" id="reciever" placeholder="이름을 입력하세요"
+                  <?php if(isset($_POST['mail_num'])){echo 'value='.$_POST['sender'];}?> required>
               </div>
               <div class="content">
                 <textarea name="contents" id="content" rows="20" cols="45"></textarea>

@@ -2,7 +2,7 @@
   include 'db_connect.php';
   session_start();
   $board = $_POST['board'];
-  $sql = "INSERT INTO posts (title, contents, file, file_type, author, board, created) VALUE ('{$_POST['title']}', '{$_POST['contents']}', '" .time()."@@@".$_FILES['file']['name']. "', '{$_FILES['file']['type']}' , '{$_SESSION['user_name']}', '{$_POST['board']}', NOW())";
+  $sql = "INSERT INTO posts (title, contents, file, file_type, author, board, created) VALUES ('{$_POST['title']}', '{$_POST['contents']}', '" .time()."@@@".$_FILES['file']['name']. "', '{$_FILES['file']['type']}' , '{$_SESSION['user_name']}', '{$_POST['board']}', NOW())";
   $result = mysqli_query($conn, $sql);
   if($result){
     $saving_dir = '.\\'.$board.'_file.\\'.time()."@@@".$_FILES['file']['name'];

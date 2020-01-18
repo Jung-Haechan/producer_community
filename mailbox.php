@@ -1,6 +1,8 @@
 <?php
   include 'headline.php';
-
+  if(!isset($_SESSION['islogin'])) {
+    echo "<script>alert('로그인 한 다음 이용해주세요.');location.href='index.php';</script>";
+  }
  ?>
 
 
@@ -48,16 +50,15 @@
                     <form action='write_mail.php' method='post'>
                       <input type='submit' value='쪽지쓰기'>
                     </form>
-                    <form action='mail_delete_process.php' method='post'>
+                    <form action='delete_mail_process.php' method='post'>
                       <input type='submit' value='삭제'>
-                    </form>
-                    <table>
-                      <thead>
-                        <tr>
-                          <td>번호</td><td>제목</td><td>보낸사람</td><td>날짜</td>
-                        </tr>
-                      </thead>
-                      <tbody>";
+                      <table>
+                        <thead>
+                          <tr>
+                            <td>번호</td><td>제목</td><td>보낸사람</td><td>날짜</td>
+                          </tr>
+                        </thead>
+                        <tbody>";
                   //쪽지함 테이블 최상단 출력
 
                   $list_first = ($page-1)*$list_per_p;
@@ -66,13 +67,13 @@
                     while($row_list = mysqli_fetch_assoc($result)) {
                       echo "
                       <tr>
-                        <td><input type='checkbox'></td>
+                        <td><input type='checkbox' name='mail[]' value=".$row_list['num']."></td>
                         <td><a href='mailbox.php?mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
                         <td>".$row_list['sender']."</td>
                         <td>".explode(' ',$row_list['time'])[0]."</td>
                       </tr>";
                     }
-                    echo "</tbody></table>
+                    echo "</form></tbody></table>
                          <div class='page'>";
                   //쪽지함 테이블(쪽지들) 출력
 
@@ -113,9 +114,10 @@
                          <div class='buttons'>
                            <form action='write_mail.php' method='post'>
                                <input type='submit' value='답장'>
+                               <input type='hidden' name='sender' value=".$row_mail['sender'].">
                                <input type='hidden' name='mail_num' value=".$row_mail['num'].">
                            </form>
-                           <form action='mail_delete_process.php' method='post'>
+                           <form action='delete_mail_process.php' method='post'>
                                <input type='submit' value='삭제'>
                                <input type='hidden' name='mail_num' value=".$row_mail['num'].">
                            </form>
