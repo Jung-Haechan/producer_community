@@ -25,7 +25,7 @@
                     } else {
                       $page = $_GET['page'];
                     }
-                    echo '<h2><a href="board.php?board='.$present_board.'">'.$board["$present_board"].' 게시판 </a></h2>';
+                    echo '<h2><a href="'.$uri.'?board='.$present_board.'">'.$board["$present_board"].' 게시판 </a></h2>';
                     $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC";
                     $result = mysqli_query($conn, $sql);
                     $list_num = mysqli_num_rows($result);
@@ -73,7 +73,7 @@
                       echo "
                       <tr>
                         <td>".$row_list['num']."</td>
-                        <td><a href='board.php?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a></td>
+                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a></td>
                         <td>".$row_list['author']."</td>
                         <td>".explode(' ',$row_list['created'])[0]."</td>
                         <td>".$row_list['views']."</td>
@@ -84,13 +84,13 @@
                   //게시판 테이블(게시글) 출력
 
                   if($present_block!=1){
-                      echo "<a href='board.php?board=$present_board&&page=".($page_first-1)."'><</a>";
+                      echo "<a href='".$uri."?board=$present_board&&page=".($page_first-1)."'><</a>";
                     }
                     for($i=$page_first; $i<=$page_last; $i++) {
-                      echo "<a href='board.php?board=$present_board&&page=$i'>[$i]</a>";
+                      echo "<a href='".$uri."?board=$present_board&&page=$i'>[$i]</a>";
                     }
                     if($present_block!=$total_block_num){
-                      echo "<a href='board.php?board=$present_board&&page=".($page_last+1)."'>></a> </div>";
+                      echo "<a href='".$uri."?board=$present_board&&page=".($page_last+1)."'>></a> </div>";
                     }
                   //post_num이 NULL일 때, page 넘버링
 

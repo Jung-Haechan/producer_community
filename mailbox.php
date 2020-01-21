@@ -15,43 +15,47 @@
 
           <div class="mailbox">
 
-            <h2><a href="mailbox.php">받은쪽지함</a></h2>
+
 
 
 
             <?php
 
-                //mail_num이 NULL일 때, 쪽지함 테이블 출략하기
+              //mail_num이 NULL일 때, 쪽지함 테이블 출략하기
+              $present_mailbox = $_GET['mailbox'];
+
                 if(!isset($_GET['page'])) {
-
                   $page = 1;
-                    } else {
-                      $page = $_GET['page'];
-                    }
-                    $sql = "SELECT * FROM mail WHERE reciever = '$you'";
-                    $result = mysqli_query($conn, $sql);
-                    $list_num = mysqli_num_rows($result);
+                  } else {
+                  $page = $_GET['page'];
+                  }
+                  echo '<h2><a href="'.$uri.'?mailbox='.$present_mailbox.'">'.$mailbox["$present_mailbox"].' 쪽지함 </a></h2>';
+                  $sql = "SELECT * FROM mail WHERE reciever = '$you'";
+                  $result = mysqli_query($conn, $sql);
+                  $list_num = mysqli_num_rows($result);
 
-                    $list_per_p = 20;
-                    $page_per_b = 5;
-                    $total_page_num = ceil($list_num/$list_per_p);
-                    $total_block_num = ceil($total_page_num/$page_per_b);
-                    $present_block = ceil($page/$page_per_b);
-                    $page_first = ($present_block-1)*$page_per_b + 1;
-                    if($present_block===$total_block_num){
-                      $page_last = $total_page_num;
-                    } else {
-                      $page_last = $present_block * $page_per_b;
-                    }
+                  $list_per_p = 20;
+                  $page_per_b = 5;
+                  $total_page_num = ceil($list_num/$list_per_p);
+                  $total_block_num = ceil($total_page_num/$page_per_b);
+                  $present_block = ceil($page/$page_per_b);
+                  $page_first = ($present_block-1)*$page_per_b + 1;
+                  if($present_block===$total_block_num){
+                    $page_last = $total_page_num;
+                  } else {
+                    $page_last = $present_block * $page_per_b;
+                  }
                   //paging할 때 필요한 변수 설정
 
                   if (!isset($_GET['mail_num'])) {
                     echo "
                     <form action='write_mail.php' method='post'>
+                      <input type='hidden' name='back' value='".$_SERVER['REQUEST_URI']."'>
                       <input type='submit' value='쪽지쓰기'>
                     </form>
                     <form action='delete_mail_process.php' method='post'>
                       <input type='submit' value='삭제'>
+                      <input type='hidden' name='mailbox' value=".$present_mailbox.">
                       <table>
                         <thead>
                           <tr>
@@ -62,13 +66,18 @@
                   //쪽지함 테이블 최상단 출력
 
                   $list_first = ($page-1)*$list_per_p;
-                    $sql = "SELECT * FROM mail WHERE reciever = '$you' && reciever_del = 'x' ORDER BY read_check DESC, num DESC LIMIT $list_first, $list_per_p";
+                    if($present_mailbox === 'recieved') {
+                      $sql = "SELECT * FROM mail WHERE reciever = '$you' && reciever_del = 'x' ORDER BY read_check DESC, num DESC LIMIT $list_first, $list_per_p";
+                    } else if ($present_mailbox === 'sent') {
+                      $sql = "SELECT * FROM mail WHERE sender = '$you' && sender_del = 'x' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    }
+
                     $result = mysqli_query($conn, $sql);
                     while($row_list = mysqli_fetch_assoc($result)) {
                       echo "
                       <tr>
-                        <td><input type='checkbox' name='mail[]' value=".$row_list['num']."></td>
-                        <td><a href='mailbox.php?mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
+                        <td><input type='checkbox' name='mail_num[]' value=".$row_list['num']."></td>
+                        <td><a href='".$uri."?mailbox=".$present_mailbox."&&mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
                         <td>".$row_list['sender']."</td>
                         <td>".explode(' ',$row_list['time'])[0]."</td>
                       </tr>";
@@ -78,19 +87,19 @@
                   //쪽지함 테이블(쪽지들) 출력
 
                   if($present_block!=1){
-                      echo "<a href='mailbox.php?page=".($page_first-1)."'><</a>";
+                      echo "<a href='".$uri."?mailbox=".$present_mailbox."&&page=".($page_first-1)."'><</a>";
                     }
                     for($i=$page_first; $i<=$page_last; $i++) {
-                      echo "<a href='mailbox.php?page=$i'>[$i]</a>";
+                      echo "<a href='".$uri."?mailbox=".$present_mailbox."&&page=$i'>[$i]</a>";
                     }
                     if($present_block!=$total_block_num){
-                      echo "<a href='mailbox.php?page=".($page_last+1)."'>></a> </div>";
+                      echo "<a href='".$uri."?mailbox=".$present_mailbox."&&page=".($page_last+1)."'>></a> </div>";
                     }
                   //mail_num이 NULL일 때 page 넘버링
                 }
 
                 //mail_num이 설정되었을 때(쪽지를 클릭할 때) 쪽지 내용 보기
-                else {
+              else {
                   $sql = "UPDATE mail SET read_check = '읽음' WHERE num=".$_GET['mail_num'];
                     $result = mysqli_query($conn, $sql);
                   //쪽지 읽으면 읽음 속성 주기
@@ -111,15 +120,21 @@
                         <div class='content'>"
                           .$row_mail['contents'].
                         "</div>
-                         <div class='buttons'>
-                           <form action='write_mail.php' method='post'>
-                               <input type='submit' value='답장'>
-                               <input type='hidden' name='sender' value=".$row_mail['sender'].">
-                               <input type='hidden' name='mail_num' value=".$row_mail['num'].">
-                           </form>
+                         <div class='buttons'>";
+                     if($present_mailbox==='recieved') {
+                       echo "
+                         <form action='write_mail.php' method='post'>
+                             <input type='submit' value='답장'>
+                             <input type='hidden' name='sender' value=".$row_mail['sender'].">
+                             <input type='hidden' name='mail_num' value=".$row_mail['num'].">
+                             <input type='hidden' name='back' value='".$_SERVER['REQUEST_URI']."'>
+                         </form>";
+                     }
+                        echo "
                            <form action='delete_mail_process.php' method='post'>
                                <input type='submit' value='삭제'>
-                               <input type='hidden' name='mail_num' value=".$row_mail['num'].">
+                               <input type='hidden' name='mail_num[0]' value=".$row_mail['num'].">
+                               <input type='hidden' name='mailbox' value=".$present_mailbox.">
                            </form>
                           </div>
                        </div>";

@@ -6,4 +6,9 @@
     'free_board' => '자유',
     'completed_board' => '완성작'
   );
+
+  $mailbox = array(
+    'recieved' => '받은',
+    'sent' => '보낸'
+  );
  ?>

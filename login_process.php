@@ -10,7 +10,7 @@
   if($is_member>=1) {
     $_SESSION['islogin'] = 1;
     $_SESSION['user_ID'] = $_POST['ID'];
-    echo "<script>history.go(-2);</script>";
+    header("Location:".$_POST['back']);
   } else {
     echo "<script>alert('로그인에 실패했습니다.'); location.href='login.php';</script>";
   }

@@ -10,7 +10,7 @@
     $sql = "INSERT INTO mail ( sender, reciever, contents, `time`) VALUES ( '{$_SESSION['user_name']}', '{$_POST['reciever']}', '{$_POST['contents']}', NOW())";
     $result = mysqli_query($conn, $sql);
     if($result){
-      header('Location:mailbox.php');
+      header('Location:'.$_POST['back']);
     }
     else {
       echo '<h2>오류 발생<h2>';

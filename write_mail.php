@@ -14,6 +14,7 @@
 
           <div class="write_mail">
             <form action="write_mail_process.php" method="post">
+              <input type="hidden" name="back" value="<?=$_POST['back']?>">
               <div class="reciever">
                 <label for="reciever">받는사람</label> <input type="text" name="reciever" id="reciever" placeholder="이름을 입력하세요"
                   <?php if(isset($_POST['mail_num'])){echo 'value='.$_POST['sender'];}?> required>

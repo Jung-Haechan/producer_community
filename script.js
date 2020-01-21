@@ -4,7 +4,7 @@ var nav = function(i, text) {
     $(this).find('a').css('color', 'pink');
   }, function(){
     $('.nav_detail').fadeOut(300, function(){
-      $(this).children('div').remove();
+      $(this).children('li').remove();
     });
     $(this).find('a').removeAttr('style');
   });

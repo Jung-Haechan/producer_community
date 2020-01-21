@@ -1,7 +1,7 @@
 <?php
   include 'headline.php';
  ?>
- 
+
       <section>
 
         <aside>
@@ -10,6 +10,7 @@
         <article>
 
           <form action="register_process.php" method="post" class="register_page">
+            <input type="hidden" name="back" value="<?=$_POST['back']?>">
             <div class="label">
               <label for="new_ID">ID:</label><br>
               <label for="new_password">Password:</label><br>

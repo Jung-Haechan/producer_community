@@ -35,6 +35,8 @@
         </nav>
 
 <?php
+  $uri = $_SERVER['PHP_SELF'];
+
   if(isset($_SESSION['islogin'])) {
     $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
     $result = mysqli_query($conn, $sql);
@@ -42,21 +44,27 @@
     $_SESSION['user_name'] = $row['name'];
     $you = $_SESSION['user_name'];
 
+    $host = $_SERVER['HTTP_HOST'];
+    $parameter = $_SERVER['QUERY_STRING'];
+
     echo'
         <div class="login_register">
           <div id="name">'
           .$_SESSION['user_name'].
           '님</div>
           <form action="logout_process.php" method="post" id="logout_init">
+            <input type="hidden" name="back" value="'.$_SERVER['REQUEST_URI'].'">
             <input type="submit" name="logout_init" value="로그아웃">
           </form>
         </div>';
   } else { echo'
         <div class="login_register">
           <form action="login.php" method="post" id="login_init">
+            <input type="hidden" name="back" value="'.$_SERVER['REQUEST_URI'].'">
             <input type="submit" value="로그인">
           </form>
           <form action="register.php" method="post" id="register_init">
+            <input type="hidden" name="back" value="'.$_SERVER['REQUEST_URI'].'">
             <input type="submit" value="회원가입">
           </form>
         </div>' ;

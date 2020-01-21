@@ -10,6 +10,7 @@
         <article>
 
           <form action="login_process.php" method="post" class="login_page">
+            <input type="hidden" name="back" value="<?=$_POST['back']?>">
             <div class="label">
               <label for="ID">ID:</label><br>
               <label for="password">Password:</label>
