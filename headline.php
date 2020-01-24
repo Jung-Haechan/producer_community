@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="style.css?ver=1">
     <link rel="icon" href="images/icon.ico">
     <title> Playwithsong </title>
-    <script src="jquery.js"></script>
+    <script src="lib/jslibrary.js"></script>
   </head>
 
   <body>
@@ -49,9 +49,9 @@
 
     echo'
         <div class="login_register">
-          <div id="name">'
-          .$_SESSION['user_name'].
-          '님</div>
+          <div id="name">
+            <a href="mailbox.php?mailbox=recieved">'.$_SESSION['user_name'].'</a>
+          님</div>
           <form action="logout_process.php" method="post" id="logout_init">
             <input type="hidden" name="back" value="'.$_SERVER['REQUEST_URI'].'">
             <input type="submit" name="logout_init" value="로그아웃">
