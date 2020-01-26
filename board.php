@@ -26,13 +26,23 @@
                       $page = $_GET['page'];
                     }
                     echo '<h2><a href="'.$uri.'?board='.$present_board.'">'.$board["$present_board"].' 게시판 </a></h2>';
-                    $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC";
+                    if(isset($_GET['title'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND title LIKE '%".$_GET['title']."%' ORDER BY num DESC";
+                    }
+                    else if(isset($_GET['contents'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND ( title LIKE '%".$_GET['contents']."%' OR contents LIKE '%".$_GET['contents']."%' ) ORDER BY num DESC";                   
+                    }
+                    else if(isset($_GET['author'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND author LIKE '%".$_GET['author']."%' ORDER BY num DESC ";
+                    } 
+                    else {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC";
+                    }
                     $result = mysqli_query($conn, $sql);
                     $list_num = mysqli_num_rows($result);
-
                     $list_per_p = 20;
                     $page_per_b = 5;
-                    $total_page_num = ceil($list_num/$list_per_p);
+                    $total_page_num = ceil($list_num/$list_per_p+0.01);
                     $total_block_num = ceil($total_page_num/$page_per_b);
                     $present_block = ceil($page/$page_per_b);
                     $page_first = ($present_block-1)*$page_per_b + 1;
@@ -41,7 +51,7 @@
                     } else {
                       $page_last = $present_block * $page_per_b;
                     }
-                  //paging할 때 필요한 변수 설정
+                  //paging할 때 필요한 변수 설정, 검색 적용
 
                   if (!isset($_GET['post_num'])) {
                     echo "
@@ -86,8 +96,12 @@
                       echo "
                       <tr>
                         <td>".$row_list['num']."</td>
-                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a></td>
-                        <td><a href='userpage.php?user=".$row_list['author']."'>".$row_list['author']."</a></td>
+                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a>"; 
+                      if ($row_list['replies']) {
+                        echo "<span style='color:red'> [".$row_list['replies']."]</span>";
+                      }
+                      echo "</td>
+                        <td>".$row_list['author']."</td>
                         <td>".explode(' ',$row_list['created'])[0]."</td>
                         <td>".$row_list['views']."</td>
                       </tr>";
@@ -95,16 +109,25 @@
                     echo "</tbody></table>
                          <div class='page'>";
                   //게시판 테이블(게시글) 출력, 검색 적용
-
+                  
+                  if(isset($_GET['title'])) {
+                    $search = '&&title='.$_GET['title'];
+                  } else if (isset($_GET['contents'])) {
+                    $search = '&&contents='.$_GET['contents'];
+                  } else if (isset($_GET['author'])) {
+                    $search = '&&author='.$_GET['author'];
+                  } else {
+                    $search = "";
+                  }
                   if($present_block!=1){
-                      echo "<a href='".$uri."?board=$present_board&&page=".($page_first-1)."'><</a>";
-                    }
-                    for($i=$page_first; $i<=$page_last; $i++) {
-                      echo "<a href='".$uri."?board=$present_board&&page=$i'>[$i]</a>";
-                    }
-                    if($present_block!=$total_block_num){
-                      echo "<a href='".$uri."?board=$present_board&&page=".($page_last+1)."'>></a> </div>";
-                    }
+                      echo "<a href='".$uri."?board=$present_board$search&&page=".($page_first-1)."'><</a>";
+                  }
+                  for($i=$page_first; $i<=$page_last; $i++) {
+                      echo "<a href='".$uri."?board=$present_board$search&&page=$i'>[$i]</a>";
+                  }
+                  if($present_block!=$total_block_num){
+                      echo "<a href='".$uri."?board=$present_board$search.&&page=".($page_last+1)."'>></a> </div>";
+                  }
                   //post_num이 NULL일 때, page 넘버링
 
                 }
@@ -124,9 +147,9 @@
                           .$row_post['title'].
                         "</div>
                         <div class='info'>
-                          <div class='author'>By <strong><a href='userpage.php?user=".$row_post['author']."' style='color:black'>"
+                          <div class='author'>By <strong>"
                             .$row_post['author'].
-                          "</a></strong></div>
+                          "</strong></div>
                           <div class='time'>"
                             .$row_post['created'].
                           "</div>
@@ -200,9 +223,9 @@
                     while ($row_reply = mysqli_fetch_assoc($result)) {
                       echo "
                              <div class='reply'>
-                               <div class='author'><a href='userpage.php?user=".$row_reply['author']."' style='color:black'><strong>"
+                               <div class='author'><strong>"
                                  .$row_reply['author'].
-                               "</strong></a>님의 답글</div>";
+                               "</strong>님의 답글</div>";
                          if(isset($you)&&$row_reply['author']===$you) {
                            echo "
                                 <form action='delete_reply.php' method='post'>

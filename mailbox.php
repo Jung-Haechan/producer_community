@@ -45,9 +45,10 @@
                   } else {
                     $page_last = $present_block * $page_per_b;
                   }
-                  //paging할 때 필요한 변수 설정
+                //paging할 때 필요한 변수 설정
 
-                  if (!isset($_GET['mail_num'])) {
+                
+                if (!isset($_GET['mail_num'])) {
                     echo "
                     <form action='write_mail.php' method='post'>
                       <input type='hidden' name='back' value='".$_SERVER['REQUEST_URI']."'>
@@ -71,9 +72,9 @@
                           </tr>
                         </thead>
                         <tbody>";
-                  //쪽지함 테이블 최상단 출력
+                //쪽지함 테이블 최상단 출력
 
-                  $list_first = ($page-1)*$list_per_p;
+                $list_first = ($page-1)*$list_per_p;
                     if($present_mailbox === 'recieved') {
                       $sql = "SELECT * FROM mail WHERE reciever = '$you' && reciever_del = 'x' ORDER BY read_check DESC, num DESC LIMIT $list_first, $list_per_p";
                     } else if ($present_mailbox === 'sent') {
@@ -85,7 +86,11 @@
                       echo "
                       <tr>
                         <td><input type='checkbox' name='mail_num[]' value=".$row_list['num']."></td>
-                        <td><a href='".$uri."?mailbox=".$present_mailbox."&&mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
+                        <td>";
+                      if($row_list['read_check']=="읽지 않음"&&$present_mailbox=='recieved') {
+                        echo "<span style='color:red'>[New] </span>";
+                      }
+                      echo "<a href='".$uri."?mailbox=".$present_mailbox."&&mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
                         <td>";
                       if($present_mailbox === 'recieved') {
                         echo "<a href='userpage.php?user=".$row_list['sender']."'>".$row_list['sender'];
@@ -98,9 +103,9 @@
                     }
                     echo "</form></tbody></table>
                          <div class='page'>";
-                  //쪽지함 테이블(쪽지들) 출력
+                //쪽지함 테이블(쪽지들) 출력
 
-                  if($present_block!=1){
+                if($present_block!=1){
                       echo "<a href='".$uri."?mailbox=".$present_mailbox."&&page=".($page_first-1)."'><</a>";
                     }
                     for($i=$page_first; $i<=$page_last; $i++) {
@@ -109,7 +114,7 @@
                     if($present_block!=$total_block_num){
                       echo "<a href='".$uri."?mailbox=".$present_mailbox."&&page=".($page_last+1)."'>></a> </div>";
                     }
-                  //mail_num이 NULL일 때 page 넘버링
+                //mail_num이 NULL일 때 page 넘버링
                 }
 
                 //mail_num이 설정되었을 때(쪽지를 클릭할 때) 쪽지 내용 보기

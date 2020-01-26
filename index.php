@@ -11,27 +11,33 @@
 
           <div class="index">
 
-            <div class="source_board">
-              <div class="composer_board">
-                작곡 게시판
-              </div>
-              <div class="lyricist_board">
-                작사 게시판
-              </div>
-              <div class="performer_board">
-                보컬/악기 게시판
-              </div>
-            </div>
+              <?php
 
-            <div class="second_part">
-              <div class="free_board">
-                자유 게시판
-              </div>
-              <div class="completed_board">
-                완성작
-              </div>
-            </div>
-
+                foreach($board as $key => $value) {
+                  if($key === 'free_board'){
+                    $list_num = 16;
+                  } else {
+                    $list_num = 7;
+                  }
+                  $sql = "SELECT num, title FROM posts WHERE board = '$key' ORDER BY num DESC LIMIT $list_num";
+                  $result = mysqli_query($conn, $sql);
+                  
+                  echo "
+                  <div class='$key'>
+                    <div class='title'> 
+                      <a href='board.php?board=".$key."'>".$value." 게시판</a></strong>
+                    </div>
+                    <ul>";
+                    while ($row = mysqli_fetch_assoc($result)){
+                      echo "<li><a href='board.php?board=$key&&post_num=".$row['num']."' style='color:black'>".$row['title']."</a>";
+                    }
+                  echo "</ul></div>";
+                }
+                
+                
+                    
+                  ?>
+  
           </div>
         </article>
 
