@@ -45,11 +45,12 @@
 
                   if (!isset($_GET['post_num'])) {
                     echo "
-                    <form action='index.html' method='get'>
+                    <form action='search_process.php' method='post'>
+                      <input type='hidden' name='board' value='$present_board'>
                       <select name='arrange'>
-                        <option value=''>제목</option>
-                        <option value=''>제목+내용</option>
-                        <option value=''>작성자</option>
+                        <option value='title'>제목</option>
+                        <option value='contents'>제목+내용</option>
+                        <option value='author'>작성자</option>
                       </select>
                       <input type='text' name='search'>
                       <input type='submit' value='검색'>
@@ -67,21 +68,33 @@
                   //게시판 테이블 최상단 출력
 
                   $list_first = ($page-1)*$list_per_p;
-                    $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    if(isset($_GET['title'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND title LIKE '%".$_GET['title']."%' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    }
+                    else if(isset($_GET['contents'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND ( title LIKE '%".$_GET['contents']."%' OR contents LIKE '%".$_GET['contents']."%' ) ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    }
+                    else if(isset($_GET['author'])) {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND author LIKE '%".$_GET['author']."%' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    }
+                    else {
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC LIMIT $list_first, $list_per_p";
+                    }
+                    
                     $result = mysqli_query($conn, $sql);
                     while ($row_list = mysqli_fetch_assoc($result)){
                       echo "
                       <tr>
                         <td>".$row_list['num']."</td>
                         <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a></td>
-                        <td>".$row_list['author']."</td>
+                        <td><a href='userpage.php?user=".$row_list['author']."'>".$row_list['author']."</a></td>
                         <td>".explode(' ',$row_list['created'])[0]."</td>
                         <td>".$row_list['views']."</td>
                       </tr>";
                     }
                     echo "</tbody></table>
                          <div class='page'>";
-                  //게시판 테이블(게시글) 출력
+                  //게시판 테이블(게시글) 출력, 검색 적용
 
                   if($present_block!=1){
                       echo "<a href='".$uri."?board=$present_board&&page=".($page_first-1)."'><</a>";
@@ -111,9 +124,9 @@
                           .$row_post['title'].
                         "</div>
                         <div class='info'>
-                          <div class='author'>By<strong> "
+                          <div class='author'>By <strong><a href='userpage.php?user=".$row_post['author']."' style='color:black'>"
                             .$row_post['author'].
-                          "</strong></div>
+                          "</a></strong></div>
                           <div class='time'>"
                             .$row_post['created'].
                           "</div>
@@ -187,9 +200,9 @@
                     while ($row_reply = mysqli_fetch_assoc($result)) {
                       echo "
                              <div class='reply'>
-                               <div class='author'><strong>"
+                               <div class='author'><a href='userpage.php?user=".$row_reply['author']."' style='color:black'><strong>"
                                  .$row_reply['author'].
-                               "</strong>님의 답글</div>";
+                               "</strong></a>님의 답글</div>";
                          if(isset($you)&&$row_reply['author']===$you) {
                            echo "
                                 <form action='delete_reply.php' method='post'>

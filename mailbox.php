@@ -59,7 +59,15 @@
                       <table>
                         <thead>
                           <tr>
-                            <td>번호</td><td>제목</td><td>보낸사람</td><td>날짜</td>
+                            <td>번호</td><td>제목</td><td>";
+                  if($present_mailbox==='recieved') {
+                    echo '보낸 사람';
+                  }
+                  else {
+                    echo '받은 사람';
+                  }
+
+                  echo     "</td><td>날짜</td>
                           </tr>
                         </thead>
                         <tbody>";
@@ -78,7 +86,13 @@
                       <tr>
                         <td><input type='checkbox' name='mail_num[]' value=".$row_list['num']."></td>
                         <td><a href='".$uri."?mailbox=".$present_mailbox."&&mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
-                        <td>".$row_list['sender']."</td>
+                        <td>";
+                      if($present_mailbox === 'recieved') {
+                        echo "<a href='userpage.php?user=".$row_list['sender']."'>".$row_list['sender'];
+                      } else {
+                        echo "<a href='userpage.php?user=".$row_list['reciever']."'>".$row_list['reciever'];
+                      }
+                      echo "</a></td>
                         <td>".explode(' ',$row_list['time'])[0]."</td>
                       </tr>";
                     }
@@ -109,11 +123,20 @@
                     $row_mail = mysqli_fetch_assoc($result);
                     echo "
                       <div class='mail'>
-                        <div class='info'>
-                          <div class='sender'>From<strong> "
+                        <div class='info'>";
+                        if($present_mailbox === 'recieved') {
+                          echo "
+                          <div class='sender'>From <a href='userpage.php?user=".$row_mail['sender']."' style='color:black'><strong>"
                             .$row_mail['sender'].
-                          "</strong></div>
-                          <div class='time'>"
+                          "</strong></a></div>";
+                        } else {
+                          echo "
+                          <div class='sender'>To <a href='userpage.php?user=".$row_mail['reciever']."' style='color:black'><strong>"
+                            .$row_mail['reciever'].
+                          "</strong></a></div>";
+                        }
+                          echo
+                          "<div class='time'>"
                             .$row_mail['time'].
                           "</div>
                         </div>

@@ -49,9 +49,9 @@
 
     echo'
         <div class="login_register">
-          <div id="name">'
+          <div id="name"><a href="mypage.php">'
           .$_SESSION['user_name'].
-          '님</div>
+          '님</a></div>
           <form action="logout_process.php" method="post" id="logout_init">
             <input type="hidden" name="back" value="'.$_SERVER['REQUEST_URI'].'">
             <input type="submit" name="logout_init" value="로그아웃">
