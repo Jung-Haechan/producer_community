@@ -8,21 +8,16 @@
         </aside>
 
         <article>
-
-          <form action="login_process.php" method="post" class="login_page">
-            <input type="hidden" name="back" value="<?=$_POST['back']?>">
-            <div class="label">
-              <label for="ID">ID:</label><br>
-              <label for="password">Password:</label>
-            </div>
-              <div class="blank">
-                <input type="text" name="ID" id ="ID" required><br>
-                <input type="password" name="password" id="password" required>
-              </div>
-              <div class="enter">
-                <input type="submit" name="logIn" value="로그인" style="height:30px">
-              </div>
+          <div class="login_page">
+          <form action="login_process.php" method="post">
+            <input type="hidden" name="back" value="<?=$_POST['back']?>">      
+            <label for="ID">ID:</label>
+            <input type="text" name="ID" class="blank" required>
+            <label for="password">Password:</label>    
+            <input type="password" name="password" class="blank" required>
+            <input type="submit" name="logIn" value="로그인" id="submit">
            </form>
+          </div>
 
         </article>
 

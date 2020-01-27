@@ -6,29 +6,31 @@ var nav = {
     '음악에 대한 다양한 의견을 공유하세요',
     '협업을 통해 완성한 여러분의 음악을 들려주세요',
   ),
-  show_del: function(eventTarget, text) {
+  show_del: function(eventTarget, text = null) {
     $(eventTarget).hover(
       function(){
         $(this).append('<div class="nav_detail">'+text+'</div>');
-        $(this).find('a').css('color', 'pink');
-    },
-    function(){
+        $(this).css('color', 'pink');
+      },
+      function(){
       $('.nav_detail').fadeOut(300, function(){
-        $(this).remove();
+          $(this).remove();
       });
-      $(this).find('a').removeAttr('style');
+      $(this).removeAttr('style');
     });
   },
   nav_det: function() {
-    var li = $('nav').find('li');
+    var li = $('nav').find('a');
     for(i=0;i<li.length;i++) {
       this.show_del(li[i], this.contents[i]);
     }
   },
   user_det: function() {
-    var mypage = '<a href="mailbox.php?mailbox=recieved">받은쪽지함</a><a href="mailbox.php?mailbox=sent">보낸쪽지함</a><a href="write_mail.php">쪽지쓰기</a>'
-    this.show_del($('#name'), mypage);
+    var mypage = '<div><a href="mailbox.php?mailbox=recieved">받은쪽지함</a></div><div><a href="mailbox.php?mailbox=sent">보낸쪽지함</a></div><div><a href="write_mail.php">쪽지쓰기</a></div>'
+    var li = $('#name').find('a');
+    this.show_del(li, mypage);
   }
+
 }
 
 nav.nav_det();

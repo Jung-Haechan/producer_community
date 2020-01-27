@@ -8,23 +8,20 @@
         </aside>
 
         <article>
-
-          <form action="register_process.php" method="post" class="register_page">
-            <input type="hidden" name="back" value="<?=$_POST['back']?>">
-            <div class="label">
-              <label for="new_ID">ID:</label><br>
-              <label for="new_password">Password:</label><br>
+          <div class="register_page">
+            <form action="register_process.php" method="post">
+              <input type="hidden" name="back" value="<?=$_POST['back']?>">
+              <label for="new_ID">ID:</label>
+              <input type="text" name="new_ID" class="blank" required>
+              <input type="submit" name="register" value="회원가입" id="submit">
+              <label for="new_password">Password:</label>
+              <input type="password" name="new_password" class="blank" required>
               <label for="new_name">Name:</label>
-            </div>
-              <div class="blank">
-                <input type="text" name="new_ID" id="new_ID" required><br>
-                <input type="password" name="new_password" id="new_password" required><br>
-                <input type="text" name="new_name" id="new_name" required>
-              </div>
-              <div class="enter">
-                <input type="submit" name="register" value="회원가입" style="height:30px">
-              </div>
-           </form>
+              <input type="text" name="new_name" class="blank" required>
+            </form>
+          </div>
+
+
 
         </article>
 

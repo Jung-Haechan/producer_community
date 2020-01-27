@@ -93,9 +93,9 @@
                       echo "<a href='".$uri."?mailbox=".$present_mailbox."&&mail_num=".$row_list['num']."'>".$row_list['contents']."</a></td>
                         <td>";
                       if($present_mailbox === 'recieved') {
-                        echo "<a href='userpage.php?user=".$row_list['sender']."'>".$row_list['sender'];
+                        echo $row_list['sender'];
                       } else {
-                        echo "<a href='userpage.php?user=".$row_list['reciever']."'>".$row_list['reciever'];
+                        echo $row_list['reciever'];
                       }
                       echo "</a></td>
                         <td>".explode(' ',$row_list['time'])[0]."</td>
@@ -131,12 +131,12 @@
                         <div class='info'>";
                         if($present_mailbox === 'recieved') {
                           echo "
-                          <div class='sender'>From <a href='userpage.php?user=".$row_mail['sender']."' style='color:black'><strong>"
+                          <div class='sender'>From <strong>"
                             .$row_mail['sender'].
                           "</strong></a></div>";
                         } else {
                           echo "
-                          <div class='sender'>To <a href='userpage.php?user=".$row_mail['reciever']."' style='color:black'><strong>"
+                          <div class='sender'>To <strong>"
                             .$row_mail['reciever'].
                           "</strong></a></div>";
                         }
