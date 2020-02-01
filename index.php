@@ -5,6 +5,9 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
@@ -21,10 +24,10 @@
                   }
                   $sql = "SELECT num, title FROM posts WHERE board = '$key' ORDER BY num DESC LIMIT $list_num";
                   $result = mysqli_query($conn, $sql);
-                  
+
                   echo "
                   <div class='$key'>
-                    <div class='title'> 
+                    <div class='title'>
                       <a href='board.php?board=".$key."'>".$value." 게시판</a></strong>
                     </div>
                     <ul>";
@@ -33,15 +36,18 @@
                     }
                   echo "</ul></div>";
                 }
-                
-                
-                    
+
+
+
                   ?>
-  
+
           </div>
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

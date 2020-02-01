@@ -9,12 +9,15 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
 
           <div class="mypage">
-            <h2>내 정보</h2>
+            <h2><a href="mypage.php">내 정보</a></h2>
 
             <?php
               echo "
@@ -56,6 +59,9 @@
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

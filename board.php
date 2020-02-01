@@ -7,6 +7,9 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
@@ -30,11 +33,11 @@
                       $sql = "SELECT * FROM posts WHERE board='$present_board' AND title LIKE '%".$_GET['title']."%' ORDER BY num DESC";
                     }
                     else if(isset($_GET['contents'])) {
-                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND ( title LIKE '%".$_GET['contents']."%' OR contents LIKE '%".$_GET['contents']."%' ) ORDER BY num DESC";                   
+                      $sql = "SELECT * FROM posts WHERE board='$present_board' AND ( title LIKE '%".$_GET['contents']."%' OR contents LIKE '%".$_GET['contents']."%' ) ORDER BY num DESC";
                     }
                     else if(isset($_GET['author'])) {
                       $sql = "SELECT * FROM posts WHERE board='$present_board' AND author LIKE '%".$_GET['author']."%' ORDER BY num DESC ";
-                    } 
+                    }
                     else {
                       $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC";
                     }
@@ -90,13 +93,13 @@
                     else {
                       $sql = "SELECT * FROM posts WHERE board='$present_board' ORDER BY num DESC LIMIT $list_first, $list_per_p";
                     }
-                    
+
                     $result = mysqli_query($conn, $sql);
                     while ($row_list = mysqli_fetch_assoc($result)){
                       echo "
                       <tr>
                         <td>".$row_list['num']."</td>
-                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a>"; 
+                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a>";
                       if ($row_list['replies']) {
                         echo "<span style='color:red'> [".$row_list['replies']."]</span>";
                       }
@@ -109,7 +112,7 @@
                     echo "</tbody></table>
                          <div class='page'>";
                   //게시판 테이블(게시글) 출력, 검색 적용
-                  
+
                   if(isset($_GET['title'])) {
                     $search = '&&title='.$_GET['title'];
                   } else if (isset($_GET['contents'])) {
@@ -209,7 +212,7 @@
 
                   echo "
                         <form action='reply_process.php' method='post'>
-                          <textarea name='reply' rows='8' cols='80'  required></textarea>
+                          <textarea name='reply' rows='8'  required></textarea>
                           <input type='submit' value='답글'>
                           <input type='hidden' name='board' value='".$present_board."'>
                           <input type='hidden' name='post_num' value='".$_GET['post_num']."'>
@@ -253,6 +256,9 @@
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

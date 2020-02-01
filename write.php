@@ -8,29 +8,25 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
 
           <div class="write">
             <form enctype="multipart/form-data" action="write_process.php" method="post">
-              <div class="title">
-                <label for="title">제목</label> <input type="text" name="title" id="title" style="width:400px" required>
-                <label for="board">게시판</label>
-                  <select id="board" name="board">
-                    <option value="composer_board" <?php if($_POST['board']==='composer_board'){echo 'selected';}?>>작곡</option>
-                    <option value="lyricist_board" <?php if($_POST['board']==='lyricist_board'){echo 'selected';}?>>작사</option>
-                    <option value="performer_board" <?php if($_POST['board']==='performer_board'){echo 'selected';}?>>보컬/악기</option>
-                    <option value="free_board" <?php if($_POST['board']==='free_board'){echo 'selected';}?>>자유</option>
-                    <option value="completed_board" <?php if($_POST['board']==='completed_board'){echo 'selected';}?>>완성작</option>
-                  </select>
-              </div>
-              <div class="content">
-                <label for="content">본문</label> <textarea name="contents" id="content" rows="20" cols="80"></textarea>
-              </div>
-              <div class="file">
-                <label for="file">파일</label> <input type="file" name="file" id="file">
-              </div>
+              <select id="board" name="board" style="width:150px">
+                <option value="composer_board" <?php if($_POST['board']==='composer_board'){echo 'selected';}?>>작곡 게시판</option>
+                <option value="lyricist_board" <?php if($_POST['board']==='lyricist_board'){echo 'selected';}?>>작사 게시판</option>
+                <option value="performer_board" <?php if($_POST['board']==='performer_board'){echo 'selected';}?>>보컬/악기 게시판</option>
+                <option value="free_board" <?php if($_POST['board']==='free_board'){echo 'selected';}?>>자유 게시판</option>
+                <option value="completed_board" <?php if($_POST['board']==='completed_board'){echo 'selected';}?>>완성작 게시판</option>
+              </select>
+              <input type="text" name="title" id="title" style="width:100%" placeholder="제목" required>
+              <textarea name="contents" id="content" rows="20"></textarea>
+              <input type="file" name="file" id="file">
               <input type="submit" value="등록" id="submit">
             </form>
           </div>
@@ -38,6 +34,9 @@
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

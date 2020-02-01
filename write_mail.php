@@ -8,11 +8,14 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
 
-          <div class="write_mail">
+          <div class="write">
             <form action="write_mail_process.php" method="post">
               <input type="hidden" name="back" value="<?=$_POST['back']?>">
               <div class="reciever">
@@ -22,13 +25,16 @@
               <div class="content">
                 <textarea name="contents" id="content" rows="20" cols="45"></textarea>
               </div>
-              <input type="submit" value="보내기" id="submit">
+              <input type="submit" value="보내기">
             </form>
           </div>
 
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

@@ -5,23 +5,29 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
           <div class="login_page">
-          <form action="login_process.php" method="post">
-            <input type="hidden" name="back" value="<?=$_POST['back']?>">      
-            <label for="ID">ID:</label>
-            <input type="text" name="ID" class="blank" required>
-            <label for="password">Password:</label>    
-            <input type="password" name="password" class="blank" required>
-            <input type="submit" name="logIn" value="로그인" id="submit">
-           </form>
+            <form action="login_process.php" method="post">
+              <input type="hidden" name="back" value="<?=$_POST['back']?>">
+              <label for="ID">ID:</label>
+              <input type="text" name="ID" class="blank" required>
+              <label for="password">Password:</label>
+              <input type="password" name="password" class="blank" required>
+              <input type="submit" name="logIn" value="로그인" id="submit">
+             </form>
           </div>
 
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

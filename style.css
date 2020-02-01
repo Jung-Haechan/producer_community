@@ -5,7 +5,6 @@ a {
 
 * {
   box-sizing: border-box;
-  border-color: rgb(180, 180, 180) !important;
   word-break: break-all;
 }
 body {
@@ -19,6 +18,9 @@ body {
       display: flex;
       background: rgb(60, 60, 60);
       color: rgb(240, 240, 240);
+   }
+   #nav_open {
+     display:none;
    }
    h1{
        padding: 20px;
@@ -42,24 +44,31 @@ body {
          list-style: none;
          margin-top: 10px;
      }
-     .main_nav li {
+     .main_nav >li {
          float: left;
-         margin: 20px;
          margin-top: 20px;
+         width: 120px;
        }
-       .main_nav li .nav_detail {
-         position: absolute;
-         left: 330px;
-         top: 50px;
+       .nav_detail {
+         position: relative;
+         display: none;
          background: rgba(60, 60, 60, 1);
-         padding: 30px;
-         width: 600px;
+         padding: 15px;
+         width: 100%;
          color: pink;
+         font-size: 13px;
+       }
+       .nav_detail li {
+         padding-top: 3px;
        }
      nav a {
        text-decoration: none;
        color: white;
      }
+     nav a:hover {
+       color: pink;
+     }
+
    .login_register {
        display: flex;
        flex-direction: row;
@@ -84,352 +93,319 @@ body {
           #name .nav_detail a:hover {
             color: pink;
           }
-
+    .layer {
+      display: none;
+    }
 
   section {
       display: flex;
       background-color: rgb(235, 235 , 235);
       flex-direction: row;
-      padding: 30px;
+      padding-top: 60px;
+      padding-bottom: 60px;
     }
-    article .index{
-        flex-grow: 1;
-        display: grid;
-        grid-template-columns: 426px 426px;
-        grid-template-rows: 210px 210px 210px;
-        font-size: 13px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .composer_board, .lyricist_board, .performer_board, .free_board, .completed_board {
-          margin: 8px;
-          background-color: white;
-        }
-        .index .title {
-          font-weight: bold;
-          padding: 6.6px;
-          background-color: rgb(60,60,60);
-        }
-        .lyricist_board {
-          grid-row: 2/3;
-        }
-        .free_board {
-          grid-row: 1/3;
-        }
-        .index ul {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          list-style: none;
-          padding: 0%;
-          margin: 0%;
-        }
-        .index li {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          padding-left: 20px;
-          padding-right: 20px;
-          padding-top: 3px;
-          padding-bottom: 3px;
-        }
-        .index li:nth-child(2n){
-          background-color: rgb(221, 221, 221);
-        }
-
-    article .login_page, article .register_page {
-        height: 300px;
-        text-align: center;
-        padding: 60px;
-        flex-grow: 1;
-      }
-      .login_page form {
-        display: grid;
-        grid-template-columns: 100px 150px 100px;
-        grid-template-rows: 28px 28px;
-      }
-      .login_page label {
-         grid-column: 1/2;
-      }
-      .blank {
-         margin: 3px;
-         margin-left: 10px;
-      }
-      .login_page #submit {
-        grid-column: 3/4;
-        grid-row: 1/3;
-        margin-left: 20px;
-      }
-      .register_page form {
-        display: grid;
-        grid-template-rows: 28px 28px 28px;
-        grid-template-columns: 100px 150px 100px;
-      }
-      .register_page #submit {
-        grid-row: 1/4;
-        grid-column: 3/4;
-        margin-left: 20px;
-      }
-    article .board {
-        flex-grow: 1;
-        flex-shrink: 0 !important;
-        margin-top: 20px;
-        margin-bottom: 60px;
-        min-height: 600px;
-      }
-      article .board table {
-          background: white;
-          width: 650px;
-          border-top: 1px solid #444444;
-          border-collapse: collapse;
-          margin-top: 30px;
-          font-size: 14px;
-        }
-        .board table thead{
-          font-weight: bold;
-          background: rgb(60,60,60);
-          color:white;
-          padding: 5px;
-        }
-        .board table tr:nth-child(2n) {
-          background: rgb(220,220,220);
-        }
-        .board table td {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding: 5px;
-          }
-          .board table td:nth-child(2) {
-            width: 400px;
-            max-width: 400px;
-          }
-          .board table td:nth-child(5) {
-            text-align: center;
-          }
-          .board table td a {
-            text-decoration: none;
-            color: black;
-          }
-      article .board h2 {
-         display: inline;
-        }
-        article .board h2 a {
-          text-decoration: none;
-          color: black;
-        }
-      article .board >form {
-        display: inline;
-        margin-left: 20px;
-      }
-      article .board .post {
-          background: white;
-          width: 600px;
-          border-radius: 5px;
-          margin-top: 20px;
-        }
-        .post .title {
-          font-weight: bold;
-          padding: 10px;
-        }
-        .post .info {
-            display: flex;
-            font-size: 12px;
-            background: rgb(240,240,240);
-          }
-          .post .info .author, .post .info .time, .post .info .views {
-            flex-grow: 1;
-            padding: 10px;
-          }
-        .post >.content {
-          min-height: 300px;
-          padding: 10px;
-        }
-        .post audio {
-          margin: 40px;
-        }
-        .post .buttons {
-            vertical-align: bottom;
-            text-align: right;
-            display: block;
-            padding: 10px;
-          }
-          .post .buttons form {
-            display: inline;
-          }
-        .post .neighbor {
-            padding: 10px;
-            background: rgb(240,240,240);
-          }
-          .post .neighbor a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-          }
-        .post >form {
-          padding: 22px;
-          padding-top: 50px;
-        }
-        .post .reply:nth-child(2n) {
-            padding: 10px;
-            background-color: white;
-          }
-        .post .reply:nth-child(2n-1) {
-            padding: 10px;
-            background-color: rgb(240,240,240);
-          }
-          .post .reply form {
-            float: right;
-            margin: 10px;
-          }
-          .post .reply .created {
-            font-size: 12px;
-            text-align: right;
-          }
-          .post .reply .author {
-            font-size: 12px;
-            padding-bottom: 5px;
-          }
-      article .board .page {
-          text-align: center;
-          padding: 20px;
-        }
-        .page a {
-          text-decoration: none;
-          color: black;
-          padding: 5px;
-        }
-    article .write {
-        margin: 30px;
-      }
-      article .write form>*{
-        margin:10px;
-      }
-      article .write #submit {
-        position:relative;
-        left:547px;
-        bottom: 50px;
-      }
-    article .mailbox {
-        flex-grow: 1;
-        flex-shrink: 0 !important;
-        margin-top: 20px;
-        margin-bottom: 60px;
+    article {
         min-height: 400px;
       }
-      article .mailbox table {
-          background: white;
-          width: 650px;
-          border-top: 1px solid #444444;
-          border-collapse: collapse;
-          margin-top: 30px;
-          font-size: 14px;
-        }
-        .mailbox table thead{
-          font-weight: bold;
-          background: rgb(60,60,60);
-          color:white;
-          padding: 5px;
-        }
-        .mailbox table tr:nth-child(2n) {
-          background: rgb(220,220,220);
-        }
-        .mailbox table td {
-            word-break: break-all;
-            padding: 5px;
-          }
-          .mailbox table td:nth-child(2) {
-            width: 400px;
-            max-width: 400px;
-          }
-          .mailbox table td a {
-            text-decoration: none;
-            color: black;
-          }
-      article .mailbox >form {
-        display: inline;
-        margin-left: 30px;
-      }
-      article .mailbox h2 {
-         display: inline;
-        }
-        article .mailbox h2 a {
-          text-decoration: none;
-          color: black;
-        }
-      article .mailbox .mail {
-        background: white;
-        border-radius: 5px;
-        margin-top: 20px;
-        width: 300px;
-        min-height: 300px;
-        padding: 10px;
-        }
-        .mail .info {
-            display: flex;
-            font-size: 12px;
-            background: rgb(240,240,240);
-          }
-          .mail .info .sender, .mail .info .time {
-            flex-grow: 1;
-            padding: 10px;
-          }
-        .mail >.content {
-          min-height: 300px;
-          padding: 10px;
-        }
-        .mail form {
-            vertical-align: bottom;
-            display: inline;
-          }
-      article .mailbox .page {
-          text-align: center;
-          padding: 20px;
-        }
-        .page a {
-          text-decoration: none;
-          color: black;
-          padding: 5px;
-        }
-    article .write_mail {
-        margin: 30px;
-      }
-      article .write_mail form>*{
-        margin:10px;
-      }
-    article .mypage {
-      padding-bottom: 60px;
-      flex-grow: 1px;
-    }
-      article .mypage .myinfo {
-        display: flex;
-        flex-direction: row;
-        background-color: white;
-        padding: 30px;
-      }
-      .myinfo .post_number {
-        padding-right: 50px;
-        border-right: 1px solid gray;
-      }
-      .myinfo .edit_name {
-        padding-left: 30px;
-      }
-      .myinfo form {
+      article .index{
           display: grid;
-          grid-template-columns: 120px 150px 100px;
-          grid-template-rows: 28px 28px 28px;
+          grid-template-columns: 360px 360px;
+          grid-template-rows: 210px 210px 210px;
+          font-size: 13px;
+          margin-bottom: 10px;
         }
-        .myinfo form #submit {
+        .composer_board, .lyricist_board, .performer_board, .free_board, .completed_board {
+            margin: 8px;
+            background-color: white;
+            margin-top: 0px;
+          }
+          .index .title {
+            font-weight: bold;
+            padding: 6.6px;
+            background-color: rgb(60,60,60);
+          }
+          .lyricist_board {
+            grid-row: 2/3;
+          }
+          .free_board {
+            grid-row: 1/3;
+          }
+          .index ul {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            list-style: none;
+            padding: 0%;
+            margin: 0%;
+          }
+          .index li {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+          }
+          .index li:nth-child(2n){
+            background-color: rgb(221, 221, 221);
+          }
+      article .login_page, article .register_page {
+          padding: 60px;
+        }
+        .login_page form {
+          display: grid;
+          grid-template-columns: 100px 150px 100px;
+          grid-template-rows: 28px 28px;
+        }
+        .login_page label {
+           grid-column: 1/2;
+        }
+        .blank {
+           margin: 3px;
+           margin-left: 10px;
+        }
+        .login_page #submit {
+          grid-column: 3/4;
+          grid-row: 1/3;
+          margin-left: 20px;
+        }
+        .register_page form {
+          display: grid;
+          grid-template-rows: 28px 28px 28px;
+          grid-template-columns: 100px 150px 100px;
+        }
+        .register_page #submit {
           grid-row: 1/4;
           grid-column: 3/4;
           margin-left: 20px;
         }
+      article .board, article .mailbox {
+          min-height: 800px;
+        }
+        article table {
+            background: white;
+            width: 730px;
+            border-top: 1px solid #444444;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 14px;
+            table-layout: fixed;
+          }
+          article table thead {
+            font-weight: bold;
+            background: rgb(60,60,60);
+            color:white;
+            padding: 5px;
+          }
+          article table tr:nth-child(2n) {
+            background: rgb(220,220,220);
+          }
+          article table td {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              padding: 5px;
+            }
+            article table td:nth-child(1) {
+              width: 60px;
+            }
+            article table td:nth-child(3) {
+              width: 80px;
+            }
+            article table td:nth-child(4) {
+              width: 90px;
+            }
+            article table td:nth-child(5) {
+              text-align: center;
+              width: 60px;
+            }
+            article table td a {
+              text-decoration: none;
+              color: black;
+            }
+        article h2 {
+           display: inline;
+          }
+          article h2 a {
+            text-decoration: none;
+            color: black;
+          }
+        article .board >form, article .mailbox >form {
+          display: inline;
+          margin-left: 20px;
+        }
+        article .board .post {
+            background: white;
+            width: 720px;
+            border-radius: 5px;
+            margin-top: 20px;
+          }
+          .post .title {
+            font-weight: bold;
+            padding: 10px;
+          }
+          .post .info {
+              display: flex;
+              font-size: 12px;
+              background: rgb(240,240,240);
+            }
+            .post .info .author, .post .info .time, .post .info .views {
+              flex-grow: 1;
+              padding: 10px;
+            }
+          .post >.content {
+            min-height: 300px;
+            padding: 10px;
+          }
+          .post audio {
+            margin: 40px;
+          }
+          .post .buttons {
+              vertical-align: bottom;
+              text-align: right;
+              display: block;
+              padding: 10px;
+            }
+            .post .buttons form {
+              display: inline;
+            }
+          .post .neighbor {
+              padding: 10px;
+              background: rgb(240,240,240);
+            }
+            .post .neighbor a {
+              text-decoration: none;
+              color: black;
+              font-weight: bold;
+            }
+          .post >form {
+            padding: 22px;
+            padding-top: 50px;
+          }
+          .post .reply:nth-child(2n) {
+              padding: 10px;
+              background-color: white;
+            }
+          .post .reply:nth-child(2n-1) {
+              padding: 10px;
+              background-color: rgb(240,240,240);
+            }
+            .post textarea {
+              width: 100%;
+            }
+            .post .reply form {
+              float: right;
+              margin: 10px;
+            }
+            .post .reply .created {
+              font-size: 12px;
+              text-align: right;
+            }
+            .post .reply .author {
+              font-size: 12px;
+              padding-bottom: 5px;
+            }
+        article .mailbox .mail {
+              background: white;
+              border-radius: 5px;
+              margin-top: 20px;
+              width: 300px;
+              min-height: 300px;
+              padding: 10px;
+              }
+              .mail .info {
+                  display: flex;
+                  font-size: 12px;
+                  background: rgb(240,240,240);
+                }
+                .mail .info .sender, .mail .info .time {
+                  flex-grow: 1;
+                  padding: 10px;
+                }
+              .mail >.content {
+                min-height: 300px;
+                padding: 10px;
+              }
+              .mail form {
+                  vertical-align: bottom;
+                  display: inline;
+                }
+        article .page {
+            text-align: center;
+            padding: 20px;
+          }
+          .page a {
+            text-decoration: none;
+            color: black;
+            padding: 5px;
+          }
+      article .write {
+          width: 720px;
+        }
+        article .write form {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+        }
+        article .write textarea {
+          width: 100%;
+        }
+        article .write form>*{
+          margin-bottom: 5px;
+        }
+        /* article .write #submit {
+          position:relative;
+          left:547px;
+          bottom: 50px;
+        }
+         {
+          display: inline;
+          margin-left: 30px;
+        } */
+      article .mypage {
+          padding-bottom: 60px;
+          flex-grow: 1px;
+        }
+        article .mypage .myinfo {
+            display: flex;
+            flex-direction: row;
+            background-color: white;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 50px;
+          }
+          .myinfo .post_number {
+            padding-right: 50px;
+            border-right: 1px solid gray;
+          }
+          .myinfo .edit_name {
+            padding-left: 30px;
+          }
+          .myinfo form {
+              display: grid;
+              grid-template-columns: 120px 150px 100px;
+              grid-template-rows: 28px 28px 28px;
+              width: 370px;
+            }
+            .myinfo form #submit {
+              grid-row: 1/4;
+              grid-column: 3/4;
+              margin-left: 20px;
+            }
 
     aside {
         flex-grow: 1;
-        margin: 30px;
         background-color: rgb(235, 235 , 235);
-        width: 100px;
+      }
+      aside .ad {
+        width: 130px;
+        height: 600px;
+        background: white;
+        border: 1px solid gray;
+        text-align: center;
+        margin-left:  auto;
+        margin-right: auto;
       }
 
   footer {
@@ -440,3 +416,159 @@ body {
     padding: 30px;
     text-align: center;
    }
+
+@media (max-width:1166px) {
+  .show {
+    display: none;
+  }
+  section {
+    flex-direction: column;
+    padding: 10px;
+  }
+  article {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  article {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  aside .ad {
+    height: 100px;
+    width: 720px;
+  }
+}
+
+@media (max-width:1024px) {
+  header>nav, header>.login_register {
+    display: none;
+  }
+  .layer {
+    display:none;
+    position: absolute;
+    background: #333;
+    height: 100%;
+    width: 200px;
+    font-size: 14px;
+    flex-direction: column;
+  }
+  .login_register {
+    padding: 30px;
+    flex-grow: 1;
+  }
+  .show {
+    display: flex;
+  }
+  nav {
+    flex-grow: 1;
+    height: 70%;
+  }
+
+  nav .nav_detail {
+    display: block;
+  }
+  h1 {
+    text-align: center;
+  }
+  #nav_open {
+    display: inline;
+    position: absolute;
+    padding: 17px;
+    font-size: 30px;
+  }
+  #nav_close {
+    position: absolute;
+    padding: 17px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width:760px) {
+  section {
+    width: 100%;
+  }
+  article {
+      width: 100%;
+      /* padding-top: 30px;
+      padding-bottom: 30px; */
+    }
+    article h2 {
+      display: block;
+      text-align: center;
+    }
+    article .index {
+      display: flex;
+      flex-direction: column;
+      }
+    article .board {
+        width: 100%;
+      }
+      article table {
+          width: 100%;
+        }
+        article .board>form {
+          display: none;
+        }
+        article .board .post {
+          margin-left: auto;
+          margin-right: auto;
+          width: 100%;
+        }
+      article .login_page, article .register_page {
+        padding: 0;
+        margin: auto;
+        width: 350px;
+        padding-top: 60px;
+      }
+      article .write {
+        margin: auto;
+        width: 100%;
+      }
+      article .mypage .myinfo {
+          flex-direction: column;
+          text-align: center;
+          padding: 10px;
+        }
+        .myinfo .post_number {
+          border-right: none;
+          border-bottom: 1px solid gray;
+          padding-bottom: 20px;
+          padding-right: 0px;
+        }
+        .myinfo form {
+          margin: auto;
+        }
+        .myinfo .edit_name {
+          padding: 0;
+        }
+  aside .ad {
+    width: 100%;
+  }
+
+}
+
+@media (max-width: 576px) {
+  section {
+    padding:0;
+  }
+  article table {
+      font-size: 13px;
+    }
+    article .board table td:nth-child(1) {
+      width: 0px;
+    }
+    article table td:nth-child(3) {
+      width: 70px;
+    }
+    article table td:nth-child(4) {
+      width: 0px;
+    }
+    article table td:nth-child(5) {
+      text-align: center;
+      width: 50px;
+    }
+
+  article .index ul {
+    width: 100%;
+  }
+}

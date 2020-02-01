@@ -9,6 +9,9 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
@@ -47,7 +50,7 @@
                   }
                 //paging할 때 필요한 변수 설정
 
-                
+
                 if (!isset($_GET['mail_num'])) {
                     echo "
                     <form action='write_mail.php' method='post'>
@@ -176,6 +179,9 @@
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>
