@@ -107,6 +107,9 @@ body {
     article {
         min-height: 400px;
       }
+      article .introduce {
+        max-width: 720px;
+      }
       article .index{
           display: grid;
           grid-template-columns: 360px 360px;
@@ -507,7 +510,8 @@ body {
           width: 100%;
         }
         article .board>form {
-          display: none;
+          margin-left: auto;
+          margin-right: auto;
         }
         article .board .post {
           margin-left: auto;
