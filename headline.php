@@ -2,6 +2,16 @@
   include 'db_connect.php';
   session_start();
   include 'php_object.php';
+  $host = $_SERVER['HTTP_HOST'];
+  $parameter = $_SERVER['QUERY_STRING'];
+  $uri = $_SERVER['PHP_SELF'];
+  if(isset($_SESSION['islogin'])) {
+    $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $_SESSION['user_name'] = $row['name'];
+    $you = $_SESSION['user_name'];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +50,19 @@
             <li class="main_li"><a href="mypage.php">마이페이지</a>
               <ul class="nav_detail">
                 <li><a href="mypage.php">내정보</a></li>
-                <li><a href="mailbox.php?mailbox=recieved">받은쪽지함</a></li>
+                <li><a href="mailbox.php?mailbox=recieved">받은쪽지함
+                <?php
+                 if(isset($_SESSION['islogin'])) {
+                   $sql = "SELECT * FROM mail WHERE read_check='읽지 않음' && reciever='$you'";
+                   $result = mysqli_query($conn, $sql);
+                   $is_new = mysqli_num_rows($result);
+                   if($is_new>=1) {
+                     echo '[New]';
+                   }
+                 }
+
+                 ?>
+                </a></li>
                 <li><a href="mailbox.php?mailbox=sent">보낸쪽지함</a></li>
                 <li><a href="write_mail.php">쪽지쓰기</a></li>
               </ul>
@@ -49,17 +71,7 @@
         </nav>
 
 <?php
-  $uri = $_SERVER['PHP_SELF'];
-
   if(isset($_SESSION['islogin'])) {
-    $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $_SESSION['user_name'] = $row['name'];
-    $you = $_SESSION['user_name'];
-
-    $host = $_SERVER['HTTP_HOST'];
-    $parameter = $_SERVER['QUERY_STRING'];
 
     echo'
         <div class="login_register">
@@ -117,11 +129,7 @@
       $sql = "SELECT *FROM user WHERE id='{$_SESSION['user_ID']}'";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
-      $_SESSION['user_name'] = $row['name'];
-      $you = $_SESSION['user_name'];
 
-      $host = $_SERVER['HTTP_HOST'];
-      $parameter = $_SERVER['QUERY_STRING'];
 
       echo'
           <div class="login_register">

@@ -1,7 +1,7 @@
 <?php
   include 'headline.php';
   if(!isset($_SESSION['islogin'])) {
-    echo "<script>alert('로그인 한 다음 이용해주세요.');location.href='index.php';</script>";
+    echo "<script>alert('로그인 한 다음 이용해주세요.');location.href='login.php';</script>";
   }
  ?>
 

@@ -1,7 +1,7 @@
 <?php
   include 'headline.php';
   if(!isset($_SESSION['islogin'])) {
-    echo "<script>alert('글쓰기 권한이 없습니다.'); history.go(-1);</script>";
+    echo "<script>alert('글쓰기 권한이 없습니다.'); location.href='login.php'</script>";
   }
  ?>
 

@@ -99,11 +99,11 @@
                       echo "
                       <tr>
                         <td>".$row_list['num']."</td>
-                        <td><a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a>";
+                        <td>";
                       if ($row_list['replies']) {
                         echo "<span style='color:red'> [".$row_list['replies']."]</span>";
                       }
-                      echo "</td>
+                      echo "<a href='".$uri."?board=".$present_board."&&post_num=".$row_list['num']."'>".$row_list['title']."</a></td>
                         <td>".$row_list['author']."</td>
                         <td>".explode(' ',$row_list['created'])[0]."</td>
                         <td>".$row_list['views']."</td>
@@ -234,6 +234,7 @@
                                 <form action='delete_reply.php' method='post'>
                                   <input type='submit' value='삭제'>
                                   <input type='hidden' name='reply' value='".$row_reply['num']."'>
+                                  <input type='hidden' name='post_num' value='".$_GET['post_num']."'>
                                 </form>";
                            }
                           echo "<div class='contents'>"

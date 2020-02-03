@@ -51,10 +51,11 @@ body {
        }
        .nav_detail {
          position: relative;
+         right:10%;
          display: none;
          background: rgba(60, 60, 60, 1);
          padding: 15px;
-         width: 100%;
+         width: 120%;
          color: pink;
          font-size: 13px;
        }
@@ -510,8 +511,9 @@ body {
           width: 100%;
         }
         article .board>form {
-          margin-left: auto;
-          margin-right: auto;
+          margin-bottom: 10px;
+          display: block;
+          text-align: center;
         }
         article .board .post {
           margin-left: auto;
