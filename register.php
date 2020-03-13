@@ -5,6 +5,9 @@
       <section>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
         <article>
@@ -26,6 +29,9 @@
         </article>
 
         <aside>
+          <div class="ad">
+            AD
+          </div>
         </aside>
 
       </section>

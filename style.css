@@ -107,6 +107,7 @@ body {
     }
     article {
         min-height: 400px;
+        width: 720px;
       }
       article .introduce {
         max-width: 720px;
@@ -263,7 +264,10 @@ body {
             padding: 10px;
           }
           .post audio {
-            margin: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-bottom: 40px;
           }
           .post .buttons {
               vertical-align: bottom;
@@ -317,6 +321,8 @@ body {
               width: 300px;
               min-height: 300px;
               padding: 10px;
+              margin-left: auto;
+              margin-right: auto;
               }
               .mail .info {
                   display: flex;
@@ -358,15 +364,6 @@ body {
         article .write form>*{
           margin-bottom: 5px;
         }
-        /* article .write #submit {
-          position:relative;
-          left:547px;
-          bottom: 50px;
-        }
-         {
-          display: inline;
-          margin-left: 30px;
-        } */
       article .mypage {
           padding-bottom: 60px;
           flex-grow: 1px;

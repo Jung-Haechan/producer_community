@@ -39,7 +39,7 @@
 
                   $list_per_p = 20;
                   $page_per_b = 5;
-                  $total_page_num = ceil($list_num/$list_per_p);
+                  $total_page_num = ceil($list_num/$list_per_p+0.01);
                   $total_block_num = ceil($total_page_num/$page_per_b);
                   $present_block = ceil($page/$page_per_b);
                   $page_first = ($present_block-1)*$page_per_b + 1;
@@ -63,7 +63,7 @@
                       <table>
                         <thead>
                           <tr>
-                            <td>번호</td><td>제목</td><td>";
+                            <td>체크</td><td>내용</td><td>";
                   if($present_mailbox==='recieved') {
                     echo '보낸 사람';
                   }
